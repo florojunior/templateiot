@@ -6,6 +6,8 @@ const namespaced = true;
 
 const state = {
   modelList: [],
+  modelListLoading: true,
+  modelSelectedDeleted: [],
   headerList: [],
   filter: null,
   order: null

@@ -16,6 +16,30 @@ const router = new Router({
         import(
           /* webpackChunkName: "login" */ '@/views/View.vue'
         ),
+    },
+    {
+      path: `${routerPath}/list`,
+      name: 'view',
+      component: () =>
+        import(
+          /* webpackChunkName: "login" */ '@/views/application/List.vue'
+        ),
+    },
+    {
+      path: `${routerPath}/form`,
+      name: 'view',
+      component: () =>
+        import(
+          /* webpackChunkName: "login" */ '@/views/application/List.vue'
+        ),
+    },
+    {
+      path: `${routerPath}/editform`,
+      name: 'view',
+      component: () =>
+        import(
+          /* webpackChunkName: "login" */ '@/views/application/List.vue'
+        ),
     }
   ],
 });

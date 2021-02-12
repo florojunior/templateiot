@@ -2,7 +2,7 @@
   <v-app>
     <v-app-bar app dark color="#354A5F">
       <v-toolbar-title >
-        <p color="text--white mb-0 pb-0 text-center" style="margin-bottom: 0px !important">Log4decision</p>
+        <p color="text--white mb-0 pb-0 text-center " style="margin-bottom: 0px !important">Log4decision</p>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn icon>
@@ -16,6 +16,15 @@
         <Modal />
       </v-container>
     </v-main>
+
+    <v-row>
+      <v-col xs=6 class="d-flex justify-center">
+
+      </v-col>
+      <v-col xs=6 class="d-flex justify-end">
+        
+      </v-col>
+    </v-row>
     <v-footer app>
       <!-- -->
     </v-footer>

@@ -2,11 +2,9 @@ const DEFAULT_ROUTER_PATH = "/truck";
 const DEFAULT_API_PATH = "/Truck";
 const API_SEARCH_FIELD = [ "dsPlate", "dsRegion", "dsCompany"];
 const OBJECT_LIST_ITEM_FIELDS = {
-    title: "dsPlate",
+    dsPlate : "Plate 2",
     id: "id",
-    description: "dsRegion",
-    subdescription: "dsRegion",
-    active: "flLocked" // TODO: mudar para STATUs , adicionar COR
+    dsRegion: "Region" // TODO: mudar para STATUs , adicionar COR
 };
 const ORDER_LIST_ITEM_FIELDS = [
     { description: "Placa", field: "dsPlate" },

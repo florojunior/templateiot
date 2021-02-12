@@ -17,6 +17,12 @@ const state = {
     buttonText: '',
     orderModel: {},
     show: false,
+  },
+  modalConfirm:{
+    title: '',
+    message: '',
+    buttonText: '',
+    show: true
   }
 };
 

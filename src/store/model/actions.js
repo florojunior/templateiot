@@ -1,16 +1,19 @@
-import { getList, getListFiltered, create  } from '@/services/api/api';
+import { getList, getListFiltered, create  } from '@/services/api/api-adapter';
 import List from '@/model/list';
 import Filter from '@/model/filter';
 import Order from '@/model/order';
 
 export const actions = {
+  setModelSelectedDeleted(state, deleteSelected){
+    state.commit('setModelSelectedDeleted', deleteSelected);
+  },
   async fetchListOrdered(state, order) {
     try {
       state.commit('setOrder', new Order(order.field, order.direction));
       
       var result = await getListFiltered(state.getters.getFilter, state.getters.getOrdered);
       result = new List(result.data.d.results);
-      
+  
       state.commit('setmodelList', result.getList());
     } catch (error) {
       state.dispatch(
@@ -50,6 +53,7 @@ export const actions = {
   },
   async fetchList(state) {
     try {
+      state.commit('setmodelListLoading', true);
       var result = await getList();
       result = new List(result.data.d.results);
       state.commit('setmodelList', result.getList());
@@ -65,6 +69,9 @@ export const actions = {
           root: true,
         }
       );
+    }
+    finally{
+      state.commit('setmodelListLoading', false);
     }
   },
   async fetchRegister(state, tracker) {

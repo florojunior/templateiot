@@ -5,6 +5,12 @@ export const actions = {
   closeModal(state) {
     state.commit('CLOSE_MODAL');
   },
+  showModalConfirm(state, payload) {
+    state.commit('showModalConfirm', payload);
+  },
+  closeModalConfirm(state) {
+    state.commit('closeModalConfirm');
+  },
   showModalOrder(state, payload) {
     state.commit('showModalOrder', payload);
   },

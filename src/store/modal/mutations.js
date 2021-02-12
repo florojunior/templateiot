@@ -30,5 +30,21 @@ export const mutations = {
       buttonText: '',
       show: true,
     };
+  },
+  closeModalConfirm(state) {
+    state.modalConfirm = {
+      title: '',
+      message: '',
+      buttonText: '',
+      show: false,
+    };
+  },
+  showModalConfirm(state) {
+    state.modalConfirm = {
+      title: '',
+      message: '',
+      buttonText: '',
+      show: true,
+    };
   }
 };

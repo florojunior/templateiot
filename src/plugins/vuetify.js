@@ -50,7 +50,13 @@ const vuetify = new Vuetify({
         warning: '#ffc107',
         info: '#8bc34a',
         success: '#4caf50',
-        background_default: '#f7f7f7'
+        background_default: '#f7f7f7',
+        table_header:'#eeeeee',
+        background: {
+          base: '#FFFFFF',
+          darken1: '#F2F4F8',
+          darken2: '#eeeeee',
+        },
       },
     },
   },
