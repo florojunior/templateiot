@@ -1,5 +1,13 @@
 import * as cpf from '@fnando/cpf';
 
+export const fieldRules = {
+  required: (v) => !!v || 'Este campo precisa ser informado.',
+};
+
+export const cnhRules = {
+  required: (v) => !!v || 'O campo CNH precisa ser informado.',
+};
+
 export const nameRules = {
   required: (v) => !!v || 'O campo nome precisa ser informado.',
 };

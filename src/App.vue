@@ -10,21 +10,13 @@
         </v-btn>
       <!-- -->
     </v-app-bar>
-    <v-main style="background-color: #f7f7f7">
+    <v-main style="background-color: white">
       <v-container fluid class="pa-0">
         <router-view></router-view>
         <Modal />
       </v-container>
     </v-main>
 
-    <v-row>
-      <v-col xs=6 class="d-flex justify-center">
-
-      </v-col>
-      <v-col xs=6 class="d-flex justify-end">
-        
-      </v-col>
-    </v-row>
     <v-footer app>
       <!-- -->
     </v-footer>

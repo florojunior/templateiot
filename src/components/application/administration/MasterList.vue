@@ -8,6 +8,7 @@
                             icon
                             color="blue darken-3"
                             large
+                            @click="addNew()"
                         >
                             <v-icon>mdi-plus</v-icon>
                         </v-btn>
@@ -54,6 +55,7 @@
                             color="blue darken-3"
                             large
                             @click="deleteList()"
+                            :disabled="getListSelectedDeleted.length == 0"
                         >
                             <v-icon>delete</v-icon>
                         </v-btn>
@@ -66,7 +68,9 @@
                         <v-data-table
                             :items="getList"
                             :search="search"
+                            :value="itemSelected"
                             v-model="selected"
+                            @click:row="editSelected(itemSelected)"
                             :items-per-page="10"
                             show-select
                             :headers="getHeaderList"
@@ -92,7 +96,8 @@ export default {
         return {
             search: '',
             selected : [],
-            headers: []
+            headers: [],
+            itemSelected: {}
         };
     },
     components:{
@@ -100,13 +105,13 @@ export default {
         ModalConfirm
     },
     computed:{
-        ...mapGetters('model', ['getList','getListLoading','getHeaderList']),
+        ...mapGetters('model', ['getList','getListLoading','getHeaderList','getListSelectedDeleted']),
     },
     async created(){
         await this.list();
     },
     methods:{
-        ...mapActions('model', ['fetchList','setModelSelectedDeleted']),
+        ...mapActions('model', ['fetchList','setModelSelectedDeleted','setSelectedModelEdit']),
         ...mapActions('modal', ['showModalConfirm']),
         async list(){
             await this.fetchList();
@@ -116,11 +121,17 @@ export default {
         },
         async deleteList(){
             this.showModalConfirm();
+        },
+        async editSelected(valor){
+            this.setSelectedModelEdit(valor);
+            this.$router.push({ path: '/driver/editform' }, {});
+        },
+        async addNew(){
+            this.$router.push({ path: '/driver/form' }, {});
         }
     },
     watch:{
         selected(newValue, oldValue){
-            console.log(newValue);
             this.setModelSelectedDeleted(newValue);
         }
     }

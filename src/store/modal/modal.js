@@ -22,7 +22,7 @@ const state = {
     title: '',
     message: '',
     buttonText: '',
-    show: true
+    show: false
   }
 };
 

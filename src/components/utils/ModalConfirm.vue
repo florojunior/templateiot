@@ -12,7 +12,7 @@
               color="primary"
               dark
               class="mb-4"
-              
+              @click="deleteItems()"
             >
               Sim
             </v-btn>
@@ -21,6 +21,7 @@
               rounded
               color="primary"
               dark
+              @click="closeModalConfirm()"
             >
               Cancelar
             </v-btn>
@@ -41,12 +42,17 @@ export default {
     },
   computed: {
     ...mapGetters('modal', ['getModalConfirm']),
+    ...mapGetters('model', ['getListSelectedDeleted']),
   },
   methods: {
     ...mapActions('modal', ['closeModalConfirm']),
+    ...mapActions('model', ['fetchDeleteItems']),
     handleClose() {
       this.closeModal();
     },
+    deleteItems(){
+      this.fetchDeleteItems(this.getListSelectedDeleted);
+    }
   },
 };
 </script>

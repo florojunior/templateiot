@@ -1,14 +1,13 @@
-const DEFAULT_ROUTER_PATH = "/truck";
-const DEFAULT_API_PATH = "/Truck";
+const DEFAULT_ROUTER_PATH = "/driver";
+const DEFAULT_API_PATH = "/driver";
 const API_SEARCH_FIELD = [ "dsPlate", "dsRegion", "dsCompany"];
 const OBJECT_LIST_ITEM_FIELDS = {
-    dsPlate : "Plate 2",
-    id: "id",
-    dsRegion: "Region" // TODO: mudar para STATUs , adicionar COR
+    dsDriverName : "Nome",
+    nrDriverPhone: "Telefone" // TODO: mudar para STATUs , adicionar COR
 };
 const ORDER_LIST_ITEM_FIELDS = [
-    { description: "Placa", field: "dsPlate" },
-    { description: "Região", field: "dsRegion" }
+    { description: "Placa", field: "dsTruckPlate" },
+    { description: "Região", field: "dsTruckRegion" }
 ];
 
 const DiRECTION_LIST_ITEM_FIELDS = [
