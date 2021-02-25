@@ -1,36 +1,30 @@
 import httpClient from '@/plugins/axios';
 import { apiPath } from '../../model/configController';
 
-/**
- * Protocol: 001 - API to list trackers (hospitals)
- */
-const getList = async () => httpClient.get(`${apiPath}/`, {
-  /*  auth: {
-        username: 'L4D_ADMIN',
-        password: 'First@123' // Bad password
-    }*/
-    auth: {
-        username: 'L4D_ADMIN',
-        password: 'First@123' // Bad password
-    }
-});
+const getList = async () => {
+    console.log('chegou aqui 2');
+    return await httpClient.get(`${apiPath}/query?driver=%7B"dsDriverName":"JOAO DA SILVA"%7D`, {
+        /*  auth: {
+              username: 'L4D_ADMIN',
+              password: 'First@123' // Bad password
+          }*/
+          auth: {
+              username: 'yard',
+              password: 'yard' // Bad password
+          }
+      })
+};
 
-/**
- * Protocol: 0002 - API to register tracker
- */
 const create = async (model) => {
     return httpClient.post(`${apiPath}`, model ,{
         auth: {
-            username: 'L4D_ADMIN',
-            password: 'First@123' // Bad password
+            username: 'yard',
+            password: 'yard' // Bad password
         }
     });
   };
 
-/**
- * Protocol: 0002 - API to register tracker
- */
-const update = async (model) => {
+  const update = async (model) => {
     return httpClient.put(`${apiPath}/${model.id}`, model ,{
         auth: {
             username: 'L4D_ADMIN',
@@ -39,9 +33,6 @@ const update = async (model) => {
     });
   };
 
- /**
- * Protocol: 003 - API to list trackers (hospitals)
- */
 const getListFiltered = async (filter, order) => {
     console.log(filter, order);
     return httpClient.get(`${apiPath}/${filter}/${order}`, {
@@ -52,4 +43,14 @@ const getListFiltered = async (filter, order) => {
     }); 
 }
 
-export { getList, create, update, getListFiltered };
+const deleteList = async (list) => {
+    console.log(list);
+    return httpClient.delete(`${apiPath}`, model ,{
+        auth: {
+            username: 'L4D_ADMIN',
+            password: 'First@123' // Bad password
+        }
+    });
+}
+
+export { getList, create, update, getListFiltered, deleteList };

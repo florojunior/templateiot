@@ -8,6 +8,7 @@ const state = {
   modelList: [],
   modelListLoading: true,
   modelSelectedDeleted: [],
+  modelSelectedEdit: {},
   headerList: [],
   filter: null,
   order: null
