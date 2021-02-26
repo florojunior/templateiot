@@ -1,7 +1,7 @@
 import { searchField } from '../configController';
 
 const DEFAULT_SEARCH_FIELD = searchField;
-const DEFAULT_SEARCH_METHOD = "eq";
+const DEFAULT_SEARCH_METHOD = "=";
 
 export default class FilterAbstract{
     

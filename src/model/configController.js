@@ -1,6 +1,6 @@
 const DEFAULT_ROUTER_PATH = "/driver";
 const DEFAULT_API_PATH = "/driver";
-const API_SEARCH_FIELD = [ "dsPlate", "dsRegion", "dsCompany"];
+const API_SEARCH_FIELD = [ "dsPlate"];
 const OBJECT_LIST_ITEM_FIELDS = {
     dsDriverName : "Nome",
     nrDriverPhone: "Telefone" // TODO: mudar para STATUs , adicionar COR

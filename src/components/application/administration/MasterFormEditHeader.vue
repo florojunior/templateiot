@@ -25,7 +25,7 @@
               width="150"
               dense
               class="ma-0 ml-2"
-              @click="savve()"
+              @click="edit()"
             >
               Salvar
             </v-btn>
@@ -89,6 +89,7 @@ export default {
     },
     methods:{
         ...mapActions('tracker', ['fetchRegister']),
+        ...mapActions('model', ['edit']),
         ...mapActions('modal', ['showModal']),
         async save(){
             await this.fetchRegister(this.tracker);

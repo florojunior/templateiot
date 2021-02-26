@@ -24,23 +24,27 @@ const create = async (model) => {
     });
   };
 
-  const update = async (model) => {
-    return httpClient.put(`${apiPath}/${model.id}`, model ,{
+const update = async (model) => {
+    return httpClient.put(`${apiPath}`, model ,{
         auth: {
-            username: 'L4D_ADMIN',
-            password: 'First@123' // Bad password
+            username: 'yard',
+            password: 'yard' // Bad password
         }
     });
-  };
+};
 
-const getListFiltered = async (filter, order) => {
-    console.log(filter, order);
-    return httpClient.get(`${apiPath}/${filter}/${order}`, {
-        auth: {
-            username: 'L4D_ADMIN',
-            password: 'First@123' // Bad password
-        }
-    }); 
+const getListFiltered = async (filter) => {
+    console.log(filter);
+    return await httpClient.get(`${apiPath}/query?driver=%7B"dsDriverName":"JOAO DA SILVA"%7D`, {
+        /*  auth: {
+              username: 'L4D_ADMIN',
+              password: 'First@123' // Bad password
+          }*/
+          auth: {
+              username: 'yard',
+              password: 'yard' // Bad password
+          }
+      }); 
 }
 
 const deleteList = async (list) => {

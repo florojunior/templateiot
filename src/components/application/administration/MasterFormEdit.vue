@@ -175,11 +175,10 @@ import { nameRules, emailRules, cpfRules, cnhRules, telephoneRules } from '@/val
 
 export default {
     created() {
+      this.prepareFormEdit();
       this.unsubscribe = this.$store.subscribeAction((action) => {
-        if (action.type === 'model/save') {
-            if (this.$refs.form.validate()){
-                this.save();
-            }
+        if (action.type === 'model/edit') {
+            this.save();
         }
       });
     },
@@ -272,16 +271,18 @@ export default {
             dsDriverPostalcod: this.form.dsDriverPostalcod,
             dsDriverCountry: this.form.dsDriverCountry,
             dsDriverCity: this.form.dsDriverCity,
-            dsDriverLicenseCountry: "br",
-            flDriverChecklist: "N",
-            flDriverLocked: "N",
-            flDriverMine: "N",
-            flDriverPhoneSmartphone: "Y",
-            flProcessSpot: "N",
-            idDriver: 0,
-            idUser: 1,
-            nrDriverPhoneCountry: "55",
-            nrDriverPhoneMno: ""
+            dsDriverLicenseCountry: this.getListSelectedEdit.dsDriverLicenseCountry,
+            flDriverChecklist: this.getListSelectedEdit.flDriverChecklist,
+            flDriverLocked: this.getListSelectedEdit.flDriverLocked,
+            flDriverMine: this.getListSelectedEdit.flDriverMine,
+            flDriverPhoneSmartphone: this.getListSelectedEdit.flDriverPhoneSmartphone,
+            flProcessSpot: this.getListSelectedEdit.flProcessSpot,
+            idUser: this.getListSelectedEdit.idUser,
+            idDriver: this.getListSelectedEdit.idDriver,
+            dsTag: this.getListSelectedEdit.dsTag,
+            idDriver: this.getListSelectedEdit.idDriver,
+            nrDriverPhoneCountry: this.getListSelectedEdit.nrDriverPhoneCountry,
+            nrDriverPhoneMno: this.getListSelectedEdit.nrDriverPhoneMno
         }}
       }
     },
@@ -294,15 +295,15 @@ export default {
         }
     },
     methods:{
-        ...mapActions('model', ['fetchRegister']),
+        ...mapActions('model', ['fetchEdit']),
         ...mapActions('modal', ['showModal']),
         async save(){
-            await this.fetchRegister(this.modelJSON);
-            /*this.showModal({
+            await this.fetchEdit(this.modelJSON);
+            this.showModal({
                 title: this.modal.success.title,
                 message: this.modal.success.message,
                 buttonText: this.modal.success.buttonText,
-            });*/
+            });
         },
         parseDate (date) {
             if (!date) return null
@@ -316,6 +317,22 @@ export default {
             const [year, month, day] = date.split('-')
             return `${day}/${month}/${year}`
         },
+        prepareFormEdit(){
+            this.form.dsDriverEmail = this.getListSelectedEdit.dsDriverEmail;
+            this.form.dsDriverName = this.getListSelectedEdit.dsDriverName;
+            this.form.dsDriverTaxnumber = this.getListSelectedEdit.dsDriverTaxnumber;
+            this.form.nrDriverPhone = this.getListSelectedEdit.nrDriverPhone;
+            this.form.nrDriverLicense = this.getListSelectedEdit.nrDriverLicense;
+            this.ultimoTreinamentoDate = new Date(this.getListSelectedEdit.dtDriverLicenseValid.split("-")[0],this.getListSelectedEdit.dtDriverLicenseValid.split("-")[1],this.getListSelectedEdit.dtDriverLicenseValid.split("T")[0].split("-")[2]).toISOString().substr(0, 10);
+            console.log(new Date(this.getListSelectedEdit.dtDriverTrainingValid.split("-")[0],this.getListSelectedEdit.dtDriverTrainingValid.split("-")[1],this.getListSelectedEdit.dtDriverTrainingValid.split("T")[0].split("-")[2]));
+            this.date = new Date(this.getListSelectedEdit.dtDriverTrainingValid.split("-")[0],this.getListSelectedEdit.dtDriverTrainingValid.split("-")[1],this.getListSelectedEdit.dtDriverTrainingValid.split("T")[0].split("-")[2]).toISOString().substr(0, 10);
+            this.form.dsDriverAddress = this.getListSelectedEdit.dsDriverAddress;
+            this.form.dsDriverNeighborhood = this.getListSelectedEdit.dsDriverNeighborhood;
+            this.form.dsDriverRegion = this.getListSelectedEdit.dsDriverRegion;
+            this.form.dsDriverPostalcod = this.getListSelectedEdit.dsDriverPostalcod;
+            this.form.dsDriverCountry = this.getListSelectedEdit.dsDriverCountry;
+            this.form.dsDriverCity = this.getListSelectedEdit.dsDriverCity;
+        }
     }
     
 }

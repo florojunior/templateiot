@@ -32,7 +32,7 @@
                             icon
                             color="blue darken-3"
                             large
-                            
+                            @click="fetchFilter()"
                         >
                             <v-icon>mdi-refresh</v-icon>
                         </v-btn>
@@ -70,7 +70,7 @@
                             :search="search"
                             :value="itemSelected"
                             v-model="selected"
-                            @click:row="editSelected(itemSelected)"
+                            @click:row="editSelected"
                             :items-per-page="10"
                             show-select
                             :headers="getHeaderList"
@@ -111,7 +111,7 @@ export default {
         await this.list();
     },
     methods:{
-        ...mapActions('model', ['fetchList','setModelSelectedDeleted','setSelectedModelEdit']),
+        ...mapActions('model', ['fetchList','fetchListFiltered','setModelSelectedDeleted','setSelectedModelEdit']),
         ...mapActions('modal', ['showModalConfirm']),
         async list(){
             await this.fetchList();
@@ -128,6 +128,9 @@ export default {
         },
         async addNew(){
             this.$router.push({ path: '/driver/form' }, {});
+        },
+        async fetchFilter(){
+            this.fetchListFiltered(this.search);
         }
     },
     watch:{

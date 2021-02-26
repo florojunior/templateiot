@@ -1,4 +1,4 @@
-import { getList, getListFiltered, create, deleteList  } from '@/services/api/api-adapter';
+import { getList, getListFiltered, create, update, deleteList  } from '@/services/api/api-adapter';
 import List from '@/model/list';
 import Filter from '@/model/filter';
 import Order from '@/model/order';
@@ -37,7 +37,7 @@ export const actions = {
     try {
       state.commit('setFilter', new Filter(searchValue));
       
-      var result = await getListFiltered(state.getters.getFilter, state.getters.getOrdered);
+      var result = await getListFiltered(state.getters.getFilter);
       result = new List(result.data.d.results);
       
       state.commit('setmodelList', result.getList());
@@ -82,8 +82,6 @@ export const actions = {
   async fetchRegister(state, model) {
     try {
       const result = await create(model);
-      console.log(result);
-
         state.dispatch(
           'modal/showModal',
           {
@@ -96,6 +94,38 @@ export const actions = {
             root: true,
           }
         );
+
+    } catch (error) {
+      if(error.response.status == ERROR_HTTP_422){
+        state.dispatch(
+          'modal/showModal',
+          {
+            title: 'Erro ao processar a requisição!',
+            message: 'Motorista com CPF ou CNH já cadastrado!',
+            buttonText: 'VOLTAR',
+          },
+          {
+            root: true,
+          }
+        );
+      }
+    }
+  },
+  async fetchEdit(state, model) {
+    try {
+      const result = await update(model);
+      state.dispatch(
+        'modal/showModal',
+        {
+          title: 'Operação realizada com sucesso',
+          message:
+          result.msg.body,
+          buttonText: 'VOLTAR PARA TELA INICIAL',
+        },
+        {
+          root: true,
+        }
+      );
 
     } catch (error) {
       if(error.response.status == ERROR_HTTP_422){
@@ -144,9 +174,13 @@ export const actions = {
     }
   },
   async setSelectedModelEdit(state, model){
+    console.log(model);
     state.commit('setModelSelectedEdit', model);
   },
   save(){
+    console.log('chamou');
+  },
+  edit(){
     console.log('chamou');
   }
 };
