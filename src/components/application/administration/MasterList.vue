@@ -36,13 +36,35 @@
                         >
                             <v-icon>mdi-refresh</v-icon>
                         </v-btn>
-                        <v-btn
-                            icon
-                            color="blue darken-3"
-                            large
-                        >
-                            <v-icon>filter_alt</v-icon>
-                        </v-btn>
+                        <v-menu offset-y>
+                            <template v-slot:activator="{ on, attrs }">
+                                <v-btn
+                                    icon
+                                    color="blue darken-3"
+                                    large
+                                    v-bind="attrs"
+                                    v-on="on"
+                                >
+                                    <v-icon>filter_alt</v-icon>
+                                </v-btn>
+                            </template>
+                            <v-list>
+                                <v-list-item
+                                v-for="(item, index) in getFilterList"
+                                :key="index"
+                                >
+                                <v-list-item-title>
+                                    <v-checkbox
+                                        dense
+                                        v-model="selectedFilter"
+                                        :value="item"
+                                        :label="`${item.description}`"
+                                    ></v-checkbox>    
+                                </v-list-item-title>
+                                </v-list-item>
+                            </v-list>
+                        </v-menu>
+                        
                         <v-btn
                             icon
                             color="blue darken-3"
@@ -73,6 +95,7 @@
                             @click:row="editSelected"
                             :items-per-page="10"
                             show-select
+                            item-key="idDriver"
                             :headers="getHeaderList"
                             :loading="getListLoading"
                             loading-text="Carregando...">
@@ -97,7 +120,8 @@ export default {
             search: '',
             selected : [],
             headers: [],
-            itemSelected: {}
+            itemSelected: {},
+            selectedFilter: []
         };
     },
     components:{
@@ -105,16 +129,21 @@ export default {
         ModalConfirm
     },
     computed:{
-        ...mapGetters('model', ['getList','getListLoading','getHeaderList','getListSelectedDeleted']),
+        ...mapGetters('model', ['getList','getListLoading','getHeaderList','getFilterList','getListSelectedDeleted']),
+        listParam(){
+            return {
+                
+            }
+        }
     },
     async created(){
-        await this.list();
+        //await this.list();
     },
     methods:{
-        ...mapActions('model', ['fetchList','fetchListFiltered','setModelSelectedDeleted','setSelectedModelEdit']),
+        ...mapActions('model', ['fetchList','fetchListFiltered','setModelSelectedDeleted','setSelectedModelEdit','setModelSelectedFilter']),
         ...mapActions('modal', ['showModalConfirm']),
         async list(){
-            await this.fetchList();
+            //await this.fetchList();
         },
         async order(filter){
             await this.fetchList(filter);
@@ -136,6 +165,9 @@ export default {
     watch:{
         selected(newValue, oldValue){
             this.setModelSelectedDeleted(newValue);
+        },
+        selectedFilter(newValue, oldValue){
+            this.setModelSelectedFilter(newValue);
         }
     }
 }

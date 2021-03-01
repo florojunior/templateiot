@@ -145,18 +145,24 @@
                                 </v-col>
                             </div>
                             <v-col cols=6>
-                                <v-text-field
+                                <v-select
+                                    :label="labels.pais"
+                                    :items="countries"
                                     dense
                                     v-model="form.dsDriverCountry"
-                                    :label="labels.pais"
-                                ></v-text-field>
+                                    item-text="country"
+                                    item-value="countryInitials"
+                                ></v-select>
                             </v-col>
                             <v-col cols=6>
-                                <v-text-field
+                                <v-select
+                                    :label="labels.estado"
+                                    :items="regions"
                                     dense
                                     v-model="form.dsDriverRegion"
-                                    :label="labels.estado"
-                                ></v-text-field>
+                                    item-text="region"
+                                    item-value="initials"
+                                ></v-select>
                             </v-col>
                         </v-row>
                         </v-form> 
@@ -249,7 +255,7 @@ export default {
       ]),
       regions(){
         const country = this.countries.find((country)=> {
-            return country.countryInitials == this.tracker.dsCountry
+            return country.countryInitials == this.form.dsDriverCountry
         });
         if(country){
             return country.regions;
@@ -298,7 +304,13 @@ export default {
         ...mapActions('model', ['fetchRegister']),
         ...mapActions('modal', ['showModal']),
         async save(){
-            await this.fetchRegister(this.modelJSON);
+            try {
+                await this.fetchRegister(this.modelJSON);
+                this.$router.push({ name: `list` }, {});
+            } catch (error) {
+                
+            }
+            
             /*this.showModal({
                 title: this.modal.success.title,
                 message: this.modal.success.message,

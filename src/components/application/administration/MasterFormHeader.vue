@@ -12,7 +12,7 @@
                 src="https://picsum.photos/id/11/500/300"
             ></v-img>
             <div class="ml-4">
-                <p>Cadastrar Novo Motorista</p>
+                <p>{{LABELS.formHeaderTitle}}</p>
             </div>
         </div>
     </v-col>
@@ -51,11 +51,13 @@
 import { mapGetters, mapActions } from 'vuex';
 import { routerPath } from '@/model/configController' 
 import Tracker from '../../../model/tracker';
+import { LABELS } from '@/model/configController'
 
 export default {
     data() {
       return {
         tracker:{},
+        LABELS,
         modal: {
             success: {
                 title: 'Ação realizada com sucesso',
@@ -67,21 +69,6 @@ export default {
                 message: 'Se o problema persistir, favor contatar o suporte.',
                 buttonText: 'VOLTAR PARA LOGIN',
             },
-        }
-      }
-    },
-    computed:{
-      ...mapGetters('main', [
-                    'countries'
-      ]),
-      regions(){
-        const country = this.countries.find((country)=> {
-            return country.countryInitials == this.tracker.dsCountry
-        });
-        if(country){
-            return country.regions;
-        }else{
-            return [];
         }
       }
     },

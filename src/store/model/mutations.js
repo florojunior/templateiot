@@ -8,6 +8,9 @@ export const mutations = {
   setModelSelectedDeleted(state, payload) {
     state.modelSelectedDeleted = payload;
   },
+  setModelSelectedFilter(state, payload) {
+    state.modelSelectedFilter = payload;
+  },
   setModelSelectedEdit(state, payload) {
     state.modelSelectedEdit = payload;
   },

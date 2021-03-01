@@ -2,7 +2,6 @@
   <div>
       <MasterHeaderList/>
       <MasterList/>
-      LIST
   </div>
 </template>
 
@@ -13,6 +12,8 @@ import MasterHeaderList from '@/components/application/administration/MasterHead
 
 
 export default {
+    created(){
+    },
     components:{
         MasterList,
         MasterHeaderList

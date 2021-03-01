@@ -1,5 +1,5 @@
 {
-  "name": "ls-blood",
+  "name": "app-detail",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -16,9 +16,12 @@
     "json-web-token": "3.2.0",
     "jwt-decode": "^3.0.0-beta.2",
     "pdfmake": "^0.1.65",
+    "single-spa-vue": "^2.1.0",
+    "systemjs-webpack-interop": "^1.1.0",
     "tiptap-vuetify": "^2.8.0",
     "v-mask": "^2.1.0",
     "vue": "^2.6.10",
+    "vue-i18n": "^8.23.0",
     "vue-json-excel": "^0.2.98",
     "vue-moment": "^4.1.0",
     "vue-qrcode-reader": "^2.3.13",
@@ -38,19 +41,19 @@
     "@vue/cli-service": "^3.11.0",
     "@vue/test-utils": "^1.0.3",
     "babel-eslint": "^10.1.0",
+    "deepmerge": "^4.2.2",
     "eslint": "^7.9.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-loader": "^4.0.2",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-vue": "^6.2.2",
+    "event-hooks-webpack-plugin": "^2.2.0",
     "prettier": "^2.1.2",
     "sass": "^1.22.12",
     "sass-loader": "^7.3.1",
+    "vue-cli-plugin-single-spa": "^1.1.0",
     "vue-cli-plugin-vuetify": "^0.6.3",
-    "vue-template-compiler": "^2.6.10",
+    "vue-template-compiler": "^2.6.12",
     "vuetify-loader": "^1.2.2"
-  },
-  "vue": {
-    "publicPath": "/log4decision"
   }
 }

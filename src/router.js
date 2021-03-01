@@ -1,7 +1,10 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import { routerPath } from './model/configController' 
+import { routerPath } from './model/configController'
+import List from '@/views/application/List.vue';
+import Form from '@/views/application/Form.vue';
+import FormEdit from '@/views/application/FormEdit.vue';
 
 Vue.use(Router);
 
@@ -10,36 +13,19 @@ const router = new Router({
   mode: 'history',
   routes: [
     {
-      path: routerPath,
-      name: 'view',
-      component: () =>
-        import(
-          /* webpackChunkName: "login" */ '@/views/View.vue'
-        ),
-    },
-    {
-      path: `${routerPath}/list`,
+      path: `${routerPath}`,
       name: 'list',
-      component: () =>
-        import(
-          /* webpackChunkName: "login" */ '@/views/application/List.vue'
-        ),
+      component: List,
     },
     {
       path: `${routerPath}/form`,
       name: 'view',
-      component: () =>
-        import(
-          /* webpackChunkName: "login" */ '@/views/application/Form.vue'
-        ),
+      component: Form,
     },
     {
       path: `${routerPath}/editform`,
       name: 'editForm',
-      component: () =>
-        import(
-          /* webpackChunkName: "login" */ '@/views/application/FormEdit.vue'
-        ),
+      component: FormEdit,
     }
   ],
 });

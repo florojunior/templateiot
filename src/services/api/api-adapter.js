@@ -1,9 +1,9 @@
 import httpClient from '@/plugins/axios';
-import { apiPath } from '../../model/configController';
+import { apiPath, detailPath, deleteParam } from '../../model/configController';
 
-const getList = async () => {
+const getList = async (obj) => {
     console.log('chegou aqui 2');
-    return await httpClient.get(`${apiPath}/query?driver=%7B"dsDriverName":"JOAO DA SILVA"%7D`, {
+    return await httpClient.get(`${apiPath}/query?${detailPath.detail_path}=%7B"dsDriverName":"${obj.filter.value}"%7D`, {
         /*  auth: {
               username: 'L4D_ADMIN',
               password: 'First@123' // Bad password
@@ -34,26 +34,35 @@ const update = async (model) => {
 };
 
 const getListFiltered = async (filter) => {
-    console.log(filter);
-    return await httpClient.get(`${apiPath}/query?driver=%7B"dsDriverName":"JOAO DA SILVA"%7D`, {
-        /*  auth: {
-              username: 'L4D_ADMIN',
-              password: 'First@123' // Bad password
-          }*/
-          auth: {
-              username: 'yard',
-              password: 'yard' // Bad password
-          }
-      }); 
-}
+    var filterStringPath = filter.reduce((before, actual, index, array) =>{
+        return (before ? (before + `"${actual.field}":"${actual.value}"`+",") : (`"${actual.field}":"${actual.value}"`+","))
+    },null);
 
-const deleteList = async (list) => {
-    console.log(list);
-    return httpClient.delete(`${apiPath}`, model ,{
-        auth: {
+    filterStringPath = filterStringPath.substring(0,filterStringPath.length-1);
+    
+    return await httpClient.get(`${apiPath}/query?${detailPath.detail_path}=%7B${filterStringPath}%7D`, {
+    /*  auth: {
             username: 'L4D_ADMIN',
             password: 'First@123' // Bad password
+        }*/
+        auth: {
+            username: 'yard',
+            password: 'yard' // Bad password
         }
+    });   
+}
+
+const deleteList = async (id) => {
+    var basicAuth = 'Basic ' + btoa('yard' + ':' + 'yard');
+    var dataObject = {};
+    dataObject[deleteParam.objectName] = {};
+    dataObject[deleteParam.objectName][obj.description] = id;
+
+    await httpClient.delete(`${apiPath}`,{
+        headers: {
+            Authorization: basicAuth
+        },
+        data: dataObject
     });
 }
 

@@ -1,4 +1,4 @@
-import * as myModule from '../configController';
+import * as configModule from '../configController';
 
 export default class ListAbstract {
 
@@ -7,9 +7,9 @@ export default class ListAbstract {
         this.headers = [];
     }
 
-     static getListHeader(){
+    static getListHeader(){
         var headers = [];
-        var listItemField = myModule.listItemField;
+        var listItemField = configModule.listItemField;
         for(var unidade in listItemField){
             headers.push(
                 {
@@ -22,6 +22,13 @@ export default class ListAbstract {
         }
 
         return headers;
+    }
+
+    static getListFieldsFilter(){
+
+        var listItemField = configModule.filterFieldList;
+        return listItemField;
+
     }
     getList(){
         return this.listItems;

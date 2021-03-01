@@ -1,5 +1,5 @@
 export const countries = [{
-			"country": "Selecione o Pa�s",
+			"country": "Selecione o País",
 			"countryInitials": "SELECT",
 			"countryId": "SELECT",
 			"regions": [{
@@ -23,7 +23,7 @@ export const countries = [{
 					"regionId": 2
 				},
 				{
-					"region": "Amap�",
+					"region": "Amapá",
 					"initials": "AP",
 					"regionId": 3
 				},
@@ -38,7 +38,7 @@ export const countries = [{
 					"regionId": 5
 				},
 				{
-					"region": "Cear�",
+					"region": "Ceará",
 					"initials": "CE",
 					"regionId": 6
 				},
@@ -48,17 +48,17 @@ export const countries = [{
 					"regionId": 7
 				},
 				{
-					"region": "Esp�rito Santo",
+					"region": "Espírito Santo",
 					"initials": "ES",
 					"regionId": 8
 				},
 				{
-					"region": "Goi�s",
+					"region": "Goiás",
 					"initials": "GO",
 					"regionId": 9
 				},
 				{
-					"region": "Maranh�o",
+					"region": "Maranhão",
 					"initials": "MA",
 					"regionId": 10
 				},
@@ -78,17 +78,17 @@ export const countries = [{
 					"regionId": 13
 				},
 				{
-					"region": "Par�",
+					"region": "Pará",
 					"initials": "PA",
 					"regionId": 14
 				},
 				{
-					"region": "Para�ba",
+					"region": "Paraíba",
 					"initials": "PB",
 					"regionId": 15
 				},
 				{
-					"region": "Paran�",
+					"region": "Paraná",
 					"initials": "PR",
 					"regionId": 16
 				},
@@ -98,7 +98,7 @@ export const countries = [{
 					"regionId": 17
 				},
 				{
-					"region": "Piau�",
+					"region": "Piauí",
 					"initials": "PI",
 					"regionId": 18
 				},
@@ -118,7 +118,7 @@ export const countries = [{
 					"regionId": 21
 				},
 				{
-					"region": "Rond�nia",
+					"region": "Rondônia",
 					"initials": "RO",
 					"regionId": 22
 				},
@@ -133,7 +133,7 @@ export const countries = [{
 					"regionId": 24
 				},
 				{
-					"region": "S�o Paulo",
+					"region": "São Paulo",
 					"initials": "SP",
 					"regionId": 25
 				},
@@ -150,7 +150,7 @@ export const countries = [{
 			]
 		},
 		{
-			"country": "Bol�via",
+			"country": "Bolívia",
 			"countryInitials": "BO",
 			"countryId": "SA2",
 			"regions": [{

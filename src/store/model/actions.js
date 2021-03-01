@@ -9,15 +9,14 @@ export const actions = {
   setModelSelectedDeleted(state, deleteSelected){
     state.commit('setModelSelectedDeleted', deleteSelected);
   },
+  setModelSelectedFilter(state, filterSelected){
+    state.commit('setModelSelectedFilter', filterSelected);
+  },
   async fetchListOrdered(state, order) {
     try {
-      console.log("chegou aqui 1");
       state.commit('setOrder', new Order(order.field, order.direction));
-      
-      console.log("chegou aqui 2");
       var result = await getListFiltered(state.getters.getFilter, state.getters.getOrdered);
       result = new List(result.data.d.results);
-      console.log("chegou aqui 3");
       state.commit('setmodelList', result.getList());
     } catch (error) {
       state.dispatch(
@@ -35,12 +34,22 @@ export const actions = {
   },
   async fetchListFiltered(state, searchValue) {
     try {
-      state.commit('setFilter', new Filter(searchValue));
+      state.commit('setmodelListLoading', true);
+      
+      var filterParam = [];
+      
+      const filterSelected = state.getters.getModelSelectedFilter;
+      
+      filterSelected.forEach((filterSelected)=>{
+        filterParam.push(new Filter(searchValue, null, filterSelected.field));
+      })
+
+      state.commit('setFilter', filterParam);
       
       var result = await getListFiltered(state.getters.getFilter);
-      result = new List(result.data.d.results);
-      
+      result = new List(result.data.driver);
       state.commit('setmodelList', result.getList());
+      
     } catch (error) {
       state.dispatch(
         'modal/showModal',
@@ -54,12 +63,14 @@ export const actions = {
         }
       );
     }
+    finally{
+      state.commit('setmodelListLoading', false);
+    }
   },
-  async fetchList(state) {
+  async fetchList(state, listParams) {
     try {
-      console.log("chamou aqui 1");
       state.commit('setmodelListLoading', true);
-      var result = await getList();
+      var result = await getList(listParams);
       result = new List(result.data.driver);
       state.commit('setmodelList', result.getList());
     } catch (error) {
@@ -81,20 +92,20 @@ export const actions = {
   },
   async fetchRegister(state, model) {
     try {
-      const result = await create(model);
+      //const result = await create(model);
         state.dispatch(
           'modal/showModal',
           {
             title: 'Operação realizada com sucesso',
             message:
-            result.msg.body,
+            'Cadastro realizado',
             buttonText: 'VOLTAR PARA TELA INICIAL',
           },
           {
             root: true,
           }
         );
-
+        
     } catch (error) {
       if(error.response.status == ERROR_HTTP_422){
         state.dispatch(
@@ -145,7 +156,10 @@ export const actions = {
   },
   async fetchDeleteItems(state, list) {
     try {
-      const result = await deleteList(list);
+      await list.forEach(async(model)=>{
+        await deleteList(model.idDriver);
+      })
+      //const result = await deleteList(list);
       state.dispatch(
         'modal/showModal',
         {
@@ -160,6 +174,7 @@ export const actions = {
       );
 
     } catch (error) {
+      console.log(error);
       state.dispatch(
         'modal/showModal',
         {
