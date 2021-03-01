@@ -125,7 +125,6 @@ export default {
         };
     },
     components:{
-        MasterOrder,
         ModalConfirm
     },
     computed:{
@@ -134,6 +133,14 @@ export default {
             return {
                 
             }
+        }
+    },
+    watch:{
+        selected(newValue){
+            this.setModelSelectedDeleted(newValue);
+        },
+        selectedFilter(newValue){
+            this.setModelSelectedFilter(newValue);
         }
     },
     async created(){
@@ -160,14 +167,6 @@ export default {
         },
         async fetchFilter(){
             this.fetchListFiltered(this.search);
-        }
-    },
-    watch:{
-        selected(newValue, oldValue){
-            this.setModelSelectedDeleted(newValue);
-        },
-        selectedFilter(newValue, oldValue){
-            this.setModelSelectedFilter(newValue);
         }
     }
 }

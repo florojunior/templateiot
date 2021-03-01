@@ -12,7 +12,7 @@
                 src="https://picsum.photos/id/11/500/300"
             ></v-img>
             <div class="ml-4">
-                <p>Editar Item</p>
+                <p>{{LABELS.formEditHeaderTitle}}</p>
             </div>
         </div>
     </v-col>
@@ -50,11 +50,13 @@
 
 import { mapGetters, mapActions } from 'vuex';
 import Tracker from '../../../model/tracker';
+import { LABELS } from '@/model/configController'
 
 export default {
     data() {
       return {
         tracker:{},
+        LABELS,
         modal: {
             success: {
                 title: 'Ação realizada com sucesso',

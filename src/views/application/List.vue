@@ -12,11 +12,11 @@ import MasterHeaderList from '@/components/application/administration/MasterHead
 
 
 export default {
-    created(){
-    },
     components:{
         MasterList,
         MasterHeaderList
+    },
+    created(){
     }
 }
 </script>

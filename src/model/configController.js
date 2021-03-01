@@ -14,7 +14,8 @@ const ORDER_LIST_ITEM_FIELDS = [
 
 const FILTER_LIST_ITEM_FIELDS = [
     { description: "Nome do motorista", field: "dsDriverName" },
-    { description: "Telefone", field: "nrDriverPhone" }
+    { description: "Nome do motorista Sec", field: "dsDriverName" },
+    { description: "Telefone", field: "nrDriverPhone" },
 ];
 
 const DiRECTION_LIST_ITEM_FIELDS = [
@@ -23,7 +24,9 @@ const DiRECTION_LIST_ITEM_FIELDS = [
 ];
 
 const LABELS = {
-    formHeaderTitle: "Cadastrar novo Motorista"
+    formHeaderTitle: "Cadastrar Novo Motorista",
+    formEditHeaderTitle: "Editar Motorista"
+    
 }
 
 const DETAIL_PATH = {

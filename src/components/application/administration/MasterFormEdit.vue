@@ -145,18 +145,24 @@
                                 </v-col>
                             </div>
                             <v-col cols=6>
-                                <v-text-field
+                                <v-select
+                                    :label="labels.pais"
+                                    :items="countries"
                                     dense
                                     v-model="form.dsDriverCountry"
-                                    :label="labels.pais"
-                                ></v-text-field>
+                                    item-text="country"
+                                    item-value="countryInitials"
+                                ></v-select>
                             </v-col>
                             <v-col cols=6>
-                                <v-text-field
+                                <v-select
+                                    :label="labels.estado"
+                                    :items="regions"
                                     dense
                                     v-model="form.dsDriverRegion"
-                                    :label="labels.estado"
-                                ></v-text-field>
+                                    item-text="region"
+                                    item-value="initials"
+                                ></v-select>
                             </v-col>
                         </v-row>
                         </v-form> 
@@ -247,7 +253,7 @@ export default {
       ...mapGetters('model', ['getListSelectedEdit']),
       regions(){
         const country = this.countries.find((country)=> {
-            return country.countryInitials == this.tracker.dsCountry
+            return country.countryInitials == this.form.dsDriverCountry
         });
         if(country){
             return country.regions;
@@ -324,7 +330,6 @@ export default {
             this.form.nrDriverPhone = this.getListSelectedEdit.nrDriverPhone;
             this.form.nrDriverLicense = this.getListSelectedEdit.nrDriverLicense;
             this.ultimoTreinamentoDate = new Date(this.getListSelectedEdit.dtDriverLicenseValid.split("-")[0],this.getListSelectedEdit.dtDriverLicenseValid.split("-")[1],this.getListSelectedEdit.dtDriverLicenseValid.split("T")[0].split("-")[2]).toISOString().substr(0, 10);
-            console.log(new Date(this.getListSelectedEdit.dtDriverTrainingValid.split("-")[0],this.getListSelectedEdit.dtDriverTrainingValid.split("-")[1],this.getListSelectedEdit.dtDriverTrainingValid.split("T")[0].split("-")[2]));
             this.date = new Date(this.getListSelectedEdit.dtDriverTrainingValid.split("-")[0],this.getListSelectedEdit.dtDriverTrainingValid.split("-")[1],this.getListSelectedEdit.dtDriverTrainingValid.split("T")[0].split("-")[2]).toISOString().substr(0, 10);
             this.form.dsDriverAddress = this.getListSelectedEdit.dsDriverAddress;
             this.form.dsDriverNeighborhood = this.getListSelectedEdit.dsDriverNeighborhood;

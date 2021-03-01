@@ -92,7 +92,7 @@ export const actions = {
   },
   async fetchRegister(state, model) {
     try {
-      //const result = await create(model);
+        const result = await create(model);
         state.dispatch(
           'modal/showModal',
           {
@@ -174,7 +174,6 @@ export const actions = {
       );
 
     } catch (error) {
-      console.log(error);
       state.dispatch(
         'modal/showModal',
         {
@@ -189,13 +188,10 @@ export const actions = {
     }
   },
   async setSelectedModelEdit(state, model){
-    console.log(model);
     state.commit('setModelSelectedEdit', model);
   },
   save(){
-    console.log('chamou');
   },
   edit(){
-    console.log('chamou');
   }
 };

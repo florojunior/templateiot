@@ -2,7 +2,6 @@ import httpClient from '@/plugins/axios';
 import { apiPath, detailPath, deleteParam } from '../../model/configController';
 
 const getList = async (obj) => {
-    console.log('chegou aqui 2');
     return await httpClient.get(`${apiPath}/query?${detailPath.detail_path}=%7B"dsDriverName":"${obj.filter.value}"%7D`, {
         /*  auth: {
               username: 'L4D_ADMIN',

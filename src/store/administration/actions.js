@@ -71,7 +71,6 @@ export const actions = {
       const dataUsers = await listUsersByStatus(status);
       state.commit('setPendingUsers', dataUsers.data.result)
     } catch (error) {
-      console.log(error);
       state.dispatch(
         'modal/showModal',
         {
