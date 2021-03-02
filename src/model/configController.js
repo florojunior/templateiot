@@ -33,7 +33,6 @@ const DETAIL_PATH = {
     detail_path: "driver"
 }
 
-
 const DELETE_PARAM_OBJECT = {
     objectName: "driver",
     paramName: "idDriver",

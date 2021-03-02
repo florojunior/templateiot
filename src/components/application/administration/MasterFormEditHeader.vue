@@ -1,5 +1,8 @@
 <template>
   <v-row class="pa-0 ma-0 d-flex justify-space-between">
+    <v-col cols=12 class="pa-0 ma-0">
+        <MasterBreadCrumbsEdit/>
+    </v-col>
     <v-col cols=4>
         <div class="d-flex justify-start align-center">
             <v-img
@@ -51,8 +54,10 @@
 import { mapGetters, mapActions } from 'vuex';
 import Tracker from '../../../model/tracker';
 import { LABELS } from '@/model/configController'
+import MasterBreadCrumbsEdit from './MasterBreadCrumbsEdit';
 
 export default {
+    components:{MasterBreadCrumbsEdit},
     data() {
       return {
         tracker:{},

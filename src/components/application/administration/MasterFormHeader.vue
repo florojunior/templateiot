@@ -1,5 +1,9 @@
 <template>
+
   <v-row class="pa-0 ma-0 d-flex justify-space-between">
+    <v-col cols=12 class="pa-0 ma-0">
+        <MasterBreadCrumbs/>
+    </v-col>
     <v-col cols=4>
         <div class="d-flex justify-start align-center">
             <v-img
@@ -52,8 +56,12 @@ import { mapGetters, mapActions } from 'vuex';
 import { routerPath } from '@/model/configController' 
 import Tracker from '../../../model/tracker';
 import { LABELS } from '@/model/configController'
+import MasterBreadCrumbs from './MasterBreadCrumbs';
 
 export default {
+  components:{
+    MasterBreadCrumbs
+  },
     data() {
       return {
         tracker:{},
