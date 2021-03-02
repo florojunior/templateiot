@@ -52,6 +52,7 @@ export default {
     },
     deleteItems(){
       this.fetchDeleteItems(this.getListSelectedDeleted);
+      this.closeModalConfirm();
     }
   },
 };

@@ -156,16 +156,16 @@ export const actions = {
   },
   async fetchDeleteItems(state, list) {
     try {
+      var result = null;
       await list.forEach(async(model)=>{
-        await deleteList(model.idDriver);
+        result = await deleteList(model.idDriver);
       })
       //const result = await deleteList(list);
       state.dispatch(
         'modal/showModal',
         {
           title: 'Operação realizada com sucesso',
-          message:
-          result.msg.body,
+          message:'Items deletados',
           buttonText: 'VOLTAR PARA TELA INICIAL',
         },
         {
