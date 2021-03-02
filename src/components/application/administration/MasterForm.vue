@@ -293,10 +293,10 @@ export default {
       }
     },
     watch: {
-        date (val) {
+        date () {
             this.validadeCNHDateFormatted = this.formatDate(this.date)
         },
-        ultimoTreinamentoDate (val) {
+        ultimoTreinamentoDate () {
             this.ultimoTreinamentoDateFormatted = this.formatDate(this.ultimoTreinamentoDate)
         }
     },
@@ -304,18 +304,8 @@ export default {
         ...mapActions('model', ['fetchRegister']),
         ...mapActions('modal', ['showModal']),
         async save(){
-            try {
-                await this.fetchRegister(this.modelJSON);
-                this.$router.push({ name: `list` }, {});
-            } catch (error) {
-                
-            }
-            
-            /*this.showModal({
-                title: this.modal.success.title,
-                message: this.modal.success.message,
-                buttonText: this.modal.success.buttonText,
-            });*/
+            await this.fetchRegister(this.modelJSON);
+            this.$router.push({ name: `list` }, {});
         },
         parseDate (date) {
             if (!date) return null
