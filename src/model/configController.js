@@ -38,6 +38,11 @@ const DELETE_PARAM_OBJECT = {
     paramName: "idDriver",
 }
 
+const BREADCRUMBS_LABELS = {
+    formLabel: "Cadastrar Driver",
+    listLabel: "Listar Driver",
+    propEditModelName: "dsDriverName"
+}
 
 export { 
     DEFAULT_ROUTER_PATH as routerPath, 
@@ -49,5 +54,6 @@ export {
     LABELS as LABELS,
     DETAIL_PATH as detailPath,
     DELETE_PARAM_OBJECT as deleteParam,
-    FILTER_LIST_ITEM_FIELDS as filterFieldList
+    FILTER_LIST_ITEM_FIELDS as filterFieldList,
+    BREADCRUMBS_LABELS as breadCrumbLabel
 }; 

@@ -111,12 +111,14 @@
 <script>
 
 import { mapActions, mapGetters } from 'vuex'
-import MasterOrder from '@/components/application/administration/MasterOrder.vue';
 import ModalConfirm from '@/components/utils/ModalConfirm.vue';
+import { routerPath, breadCrumbLabel } from '../../../model/configController';
 
 export default {
     data() {
         return {
+            breadCrumbLabel,
+            routerPath,
             search: '',
             selected : [],
             headers: [],
@@ -149,6 +151,7 @@ export default {
     methods:{
         ...mapActions('model', ['fetchList','fetchListFiltered','setModelSelectedDeleted','setSelectedModelEdit','setModelSelectedFilter']),
         ...mapActions('modal', ['showModalConfirm']),
+        ...mapActions('main', ['setBreadCrumbsEditName']),
         async list(){
             //await this.fetchList();
         },
@@ -158,12 +161,13 @@ export default {
         async deleteList(){
             this.showModalConfirm();
         },
-        async editSelected(valor){
-            this.setSelectedModelEdit(valor);
-            this.$router.push({ path: '/driver/editform' }, {});
+        async editSelected(selected){
+            this.setSelectedModelEdit(selected);
+            this.setBreadCrumbsEditName(selected[breadCrumbLabel.propEditModelName]);
+            this.$router.push({ path: `${routerPath}/editform` }, {});
         },
         async addNew(){
-            this.$router.push({ path: '/driver/form' }, {});
+            this.$router.push({ path: `${routerPath}/form` }, {});
         },
         async fetchFilter(){
             this.fetchListFiltered(this.search);

@@ -5,4 +5,7 @@ export const actions = {
       error,
     });
   },
+  setBreadCrumbsEditName(state, name) {
+    state.commit('setBreadCrumbsEditName',name );
+  },
 };

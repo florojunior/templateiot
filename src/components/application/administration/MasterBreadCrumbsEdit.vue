@@ -10,29 +10,37 @@
 
 <script>
 
-import { routerPath } from '../../../model/configController';
+import { routerPath, breadCrumbLabel } from '../../../model/configController';
+import { mapGetters} from 'vuex';
 
 export default {
-    data (){
-        return {
-            routerPath,
-            items: [
+    computed:{
+      ...mapGetters('main', ['breadCrumbsEditName'])
+    },
+    created(){
+        this.items = [
                 {
                     text: 'Página Inicial',
                     disabled: false,
                     href: '/',
                 },
                 {
-                    text: 'Item Menu Inicial',
+                    text: this.breadCrumbLabel.listLabel,
                     disabled: false,
                     href: routerPath,
                 },
                 {
-                    text: 'Master Detail',
+                    text: `${this.breadCrumbsEditName}`,
                     disabled: false,
                     href: routerPath+"/editform",
                 },
             ]
+    },
+    data (){
+        return {
+            routerPath,
+            breadCrumbLabel,
+            items: []
         }
     },
 }

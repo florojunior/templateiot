@@ -10,11 +10,12 @@
 
 <script>
 
-import { routerPath } from '../../../model/configController';
+import { routerPath, breadCrumbLabel } from '../../../model/configController';
 
 export default {
     data (){
         return {
+            breadCrumbLabel,
             routerPath,
             items: [
                 {
@@ -23,12 +24,12 @@ export default {
                     href: '/',
                 },
                 {
-                    text: 'Item Menu Inicial',
+                    text: breadCrumbLabel.listLabel,
                     disabled: false,
                     href: routerPath,
                 },
                 {
-                    text: 'Master Detail',
+                    text: breadCrumbLabel.formLabel,
                     disabled: false,
                     href: routerPath+"/form",
                 },

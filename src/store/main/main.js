@@ -11,7 +11,8 @@ const state = {
     mensagem: 'Mensagem',
     erro: true,
   },
-  countries: countries
+  countries: countries,
+  breadCrumbsEditName: ''
 };
 
 export const main = {
