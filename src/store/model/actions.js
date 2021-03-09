@@ -155,11 +155,10 @@ export const actions = {
     }
   },
   async fetchDeleteItems(state, list) {
+    await list.forEach(async(model)=>{
     try {
       var result = null;
-      await list.forEach(async(model)=>{
-        result = await deleteList(model.idDriver);
-      })
+      result = await deleteList(model.idDriver);
       //const result = await deleteList(list);
       state.dispatch(
         'modal/showModal',
@@ -185,7 +184,10 @@ export const actions = {
           root: true,
         }
       );
+    }finally{
+      state.dispatch('refreshList');
     }
+  });
   },
   async setSelectedModelEdit(state, model){
     state.commit('setModelSelectedEdit', model);
@@ -193,5 +195,7 @@ export const actions = {
   save(){
   },
   edit(){
+  },
+  refreshList(){
   }
 };

@@ -24,6 +24,7 @@
                             hide-details
                             outlined
                             filled
+                            @keyup.enter="fetchFilter()"
                             background-color="#fafafa"
                         ></v-text-field>
                     </v-col>
@@ -88,7 +89,7 @@
                 <v-row no-gutters>
                     <v-col cols="12">
                         <v-data-table
-                            :items="getList"
+                            :items="listTable"
                             :search="search"
                             :value="itemSelected"
                             v-model="selected"
@@ -112,11 +113,13 @@
 
 import { mapActions, mapGetters } from 'vuex'
 import ModalConfirm from '@/components/utils/ModalConfirm.vue';
-import { routerPath, breadCrumbLabel } from '../../../model/configController';
+import { routerPath, breadCrumbLabel, lockedFlagParam } from '../../../model/configController';
 
 export default {
     data() {
         return {
+            unsubscribe: null,
+            lockedFlagParam,
             breadCrumbLabel,
             routerPath,
             search: '',
@@ -135,6 +138,9 @@ export default {
             return {
                 
             }
+        },
+        listTable(){
+            return this.getList.filter((model)=> model[lockedFlagParam] != 'Y');
         }
     },
     watch:{
@@ -146,7 +152,11 @@ export default {
         }
     },
     async created(){
-        //await this.list();
+        this.unsubscribe = this.$store.subscribeAction((action) => {
+            if (action.type === 'model/refreshList') {
+                this.fetchFilter();
+            }
+        });
     },
     methods:{
         ...mapActions('model', ['fetchList','fetchListFiltered','setModelSelectedDeleted','setSelectedModelEdit','setModelSelectedFilter']),

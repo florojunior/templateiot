@@ -52,17 +52,11 @@ const getListFiltered = async (filter) => {
 }
 
 const deleteList = async (id) => {
-    var basicAuth = 'Basic ' + btoa('yard' + ':' + 'yard');
     var dataObject = {};
     dataObject[deleteParam.objectName] = {};
     dataObject[deleteParam.objectName][deleteParam.paramName] = id;
 
-    await httpClient.delete(`${apiPath}`,{
-        headers: {
-            Authorization: basicAuth
-        },
-        data: dataObject
-    });
+    await httpClient.put(`${apiPath}/lock`,dataObject);
 }
 
 export { getList, create, update, getListFiltered, deleteList };

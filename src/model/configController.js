@@ -44,6 +44,8 @@ const BREADCRUMBS_LABELS = {
     propEditModelName: "dsDriverName"
 }
 
+const LOCKED_FLAG_LIST = "flDriverLocked";
+
 export { 
     DEFAULT_ROUTER_PATH as routerPath, 
     DEFAULT_API_PATH as apiPath, 
@@ -55,5 +57,6 @@ export {
     DETAIL_PATH as detailPath,
     DELETE_PARAM_OBJECT as deleteParam,
     FILTER_LIST_ITEM_FIELDS as filterFieldList,
-    BREADCRUMBS_LABELS as breadCrumbLabel
+    BREADCRUMBS_LABELS as breadCrumbLabel,
+    LOCKED_FLAG_LIST as lockedFlagParam
 }; 

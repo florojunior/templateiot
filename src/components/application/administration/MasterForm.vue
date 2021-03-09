@@ -193,6 +193,7 @@ export default {
       this.unsubscribe();
     },
     data: vm => ({
+        unsubscribe: null,
         tab: null,
         nameRules,
         emailRules,

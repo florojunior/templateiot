@@ -21,7 +21,7 @@ httpClient.interceptors.request.use(
       config.headers['x-csrf-token'] = `${localStorage.getItem('x_csrf_token_tracker')}`;
     }
 */
-    //config.headers['Authorization'] = `Bearer ${localStorage.getItem('token_blood')}`;
+    config.headers['Authorization'] = `${JSON.parse(localStorage.getItem('user')).basic}`;
 
     return config;
   },
