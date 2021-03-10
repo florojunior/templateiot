@@ -60,3 +60,4 @@ const deleteList = async (id) => {
 }
 
 export { getList, create, update, getListFiltered, deleteList };
+ 
